@@ -14,7 +14,7 @@
 #include <Python.h>
 #include <memory>
 
-//  From this, all other operations are derived
+//  From this class, all other operations are derived
 class ExslBinOp {
 public:
     typedef std::shared_ptr<ExslBinOp> Ptr;
@@ -93,6 +93,7 @@ public:
     }
 };
 
+//  Calculates the percentage of pStrOp2 in pStrOp1
 class OpPer : public ExslBinOp {
 public:
     typedef std::shared_ptr<OpMul> Ptr;

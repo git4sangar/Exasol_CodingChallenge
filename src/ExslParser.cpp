@@ -34,7 +34,7 @@ ExslParser::ExslParser() :
     m_OpPtrs.insert({ "PER", std::make_shared<OpPer>() });
 }
 
-//  Returns the binary-operator object matching the "pStrOp"
+//  Returns the binary-operator-object matching the "pStrOp"
 //  if pStrOp is "mul", this function returns ptr to Mul Obj
 ExslBinOp::Ptr ExslParser::getOpObj(const std::string &pStrOp) {
     ExslBinOp::Ptr  pBinOp;
@@ -50,8 +50,8 @@ ExslBinOp::Ptr ExslParser::getOpObj(const std::string &pStrOp) {
     return pBinOp;
 }
 
-//  Parses the user provided Transformation Map. Eg "op1" : "add"
-//  Holds the key / value in m_TrnsMap which is a unordered-map
+//  Parses the user-provided Transformation Map. Eg "op1" : "add"
+//  Holds the key / value in m_TrnsMap which is an unordered-map
 //  m_TrnsMap will contain {"op1", "ADD"} & so on
 int ExslParser::parseTransformationMap(PyObject *pPyObj) {
     if(!pPyObj || !PyDict_Check(pPyObj)) return -1;
@@ -86,8 +86,8 @@ int ExslParser::parseTransformationMap(PyObject *pPyObj) {
     return (iLoop == pyiSz) ? ++m_MapHandle : -1;
 }
 
-//  Parses the buffer row by row. During each row, does the operation
-//  The results are stored in m_Aggregate according to first col-val
+//  Parses the buffer row by row. During each row, perform the operation
+//  The results are accumulated in m_Aggregate against the mnemonic
 bool ExslParser::parseCSVInCPU(int iHandle, const char* ptrBuf) {
     if(iHandle != m_MapHandle) return false;
 
@@ -139,6 +139,8 @@ std::vector<std::string> ExslParser::parseARow(const char* ptrBuf) {
 }
 
 //  Pack a dictionary to send to python
+//  Sum of results of each menmonics (like op1, op2) are all available in m_Aggregate
+//  Convert the same as a python dictionary
 PyObject* ExslParser::packAggregate() {
     PyObject* pPyDict = PyDict_New();
     if(!pPyDict) return NULL;

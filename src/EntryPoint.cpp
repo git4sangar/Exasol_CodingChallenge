@@ -14,7 +14,6 @@
 #include <algorithm>
 
 #include "ExslParser.h"
-#include "ExslGPUParser.h"
 
 static PyObject* Exasol_ParseCSV(PyObject* self, PyObject* args) {
     const char* pBuffer;
