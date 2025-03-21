@@ -59,4 +59,5 @@ Care is taken to make sure each function has less than 100 lines of code. Also e
 For performance reasons, unordered map is used wherever required. As umap implements hash-functions, the searches are done in O(1).
 To coserve memory, the same input buffer from python is utilized as it is. Meaning, the parsing and operations are done each row-wise in single traverse in the original buffer without copying. Such an approach is mandatory for huge files with millions of rows.
 ### GPU Usage
- There is a PoC level implementation for performing such parsing using GPU too. But as it depends on Nividia drivers, it is not built as part of the build-script.
+Disclaimer: The GPU based parsing is neither fully implemented nor built. It is just PoC code base. If at all one needs to implement, he can follow the approach used ExslGPUParser.h and ExslGPUParser.cpp. 
+There is a PoC level implementation for performing such parsing using GPU too. But as it depends on Nividia drivers, it is not built as part of the build-script.
