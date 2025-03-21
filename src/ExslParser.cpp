@@ -106,7 +106,7 @@ bool ExslParser::parseCSVInCPU(int iHandle, const char* ptrBuf) {
         ExslBinOp::Ptr pBinOp   = getOpObj(strOp);
         if(pBinOp) {
             //  Check and perform operation
-            if(!isDigit(aRow[1]) || !isDigit(aRow[1])) return false;
+            if(!isDigit(aRow[1]) || !isDigit(aRow[2])) return false;
             try { dVal = pBinOp->operate(aRow[1], aRow[2]); }
             catch(...) { return false; }
 
